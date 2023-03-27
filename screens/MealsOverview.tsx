@@ -1,19 +1,18 @@
 import { FlatList, StyleSheet, Text, View } from 'react-native';
 import { IStackScreenTypes } from '../@types/StackScreenTypes';
+import MealItem from '../components/MealItem';
 import { MEALS } from '../data/dummy-data';
 
 export default function MealsOverview({ route }: IStackScreenTypes) {
   const { categoryId } = route.params;
+  //Filtro per l'id ricevuto
   const displayedMeals = MEALS.filter(
     meal => meal.categoryIds.indexOf(categoryId as string) >= 0,
   );
 
+  //Funzione per rendirizzare
   function _renderMealItem({ item }: any) {
-    return (
-      <View>
-        <Text>{item.title}</Text>
-      </View>
-    );
+    return <MealItem title={item.title} imageUrl={item.imageUrl} />;
   }
 
   return (
@@ -30,6 +29,7 @@ export default function MealsOverview({ route }: IStackScreenTypes) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: 'green',
     alignItems: 'center',
     justifyContent: 'center',
   },

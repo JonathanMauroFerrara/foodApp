@@ -20,4 +20,9 @@ type TMeal = {
   isLactoseFree: boolean;
 };
 
-export { TCategoryGridTile, TMeal };
+type TMealItem = {
+  title: string;
+  imageUrl: string;
+};
+
+export { TCategoryGridTile, TMeal, TMealItem };

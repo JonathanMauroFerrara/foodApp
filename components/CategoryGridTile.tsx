@@ -1,5 +1,6 @@
 import { Pressable, View, Text, StyleSheet, Platform } from 'react-native';
 import { TCategoryGridTile } from '../@types';
+import { useNavigation } from '@react-navigation/native';
 
 export default function CategoryGridTile({ title, color, handlePress }: TCategoryGridTile) {
   return (
