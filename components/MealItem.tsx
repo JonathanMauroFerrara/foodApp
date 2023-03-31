@@ -14,11 +14,12 @@ function MealItem({
   duration,
   complexity,
   affordability,
+  onPress
 }: TMeal) {
   return (
     <View style={styles.container}>
       <Pressable
-        onPress={() => {}}
+        onPress={onPress}
         android_ripple={{ color: "#ccc" }}
         style={({ pressed }) => [pressed && styles.buttonPressed]}
       >

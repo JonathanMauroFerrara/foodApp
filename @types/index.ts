@@ -18,7 +18,7 @@ type TMeal = {
   isVegan: boolean;
   isVegetarian: boolean;
   isLactoseFree: boolean;
+  onPress?: () => void;
 };
-
 
 export { TCategoryGridTile, TMeal };

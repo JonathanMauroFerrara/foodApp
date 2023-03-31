@@ -1,17 +1,17 @@
 class Meal {
-  id: string
-    categoryIds: string
-    title: string
-    affordability: string
-    complexity: string
-    imageUrl: string
-    duration: string
-    ingredients: string
-    steps: string
-    isGlutenFree: boolean
-    isVegan: boolean
-    isVegetarian: boolean
-    isLactoseFree: boolean
+  id: string;
+  categoryIds: string;
+  title: string;
+  affordability: string;
+  complexity: string;
+  imageUrl: string;
+  duration: string;
+  ingredients: string[];
+  steps: string[];
+  isGlutenFree: boolean;
+  isVegan: boolean;
+  isVegetarian: boolean;
+  isLactoseFree: boolean;
   constructor(
     id: string,
     categoryIds: string,
@@ -20,8 +20,8 @@ class Meal {
     complexity: string,
     imageUrl: string,
     duration: string,
-    ingredients: string,
-    steps: string,
+    ingredients: string[],
+    steps: string[],
     isGlutenFree: boolean,
     isVegan: boolean,
     isVegetarian: boolean,
