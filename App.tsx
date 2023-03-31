@@ -7,13 +7,14 @@ import MealsOverview from "./screens/MealsOverview";
 import MealDetails from "./screens/MealDetails";
 import { IStackScreenTypes } from "./@types/StackScreenTypes";
 import { Text } from "react-native";
+import IconButton from "./components/IconButton";
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
     <>
-      <StatusBar style="dark" />
+      <StatusBar style="light" />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen
@@ -41,12 +42,15 @@ export default function App() {
             options={{
               headerRight: () => {
                 return (
-                  <Button
-                    title="Tap me"
-                    onPress={() => console.log("pressed")}
+                  <IconButton
+                    iconType="star"
+                    color="#fcf009"
+                    onPress={() => {}}
                   />
                 );
               },
+              headerStyle: { backgroundColor: "#3e76ca" },
+              headerTintColor: "white",
             }}
           />
         </Stack.Navigator>
