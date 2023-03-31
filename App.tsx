@@ -11,6 +11,11 @@ import IconButton from "./components/IconButton";
 
 const Stack = createNativeStackNavigator();
 
+export const colorPalette = {
+  primary: "#E74C3C",
+  secondary: "#F2F3F4",
+};
+
 export default function App() {
   return (
     <>
@@ -22,7 +27,7 @@ export default function App() {
             component={CategoriesScreen}
             options={{
               title: "Categories",
-              headerStyle: { backgroundColor: "#3e76ca" },
+              headerStyle: { backgroundColor: colorPalette.primary },
               headerTintColor: "white",
             }}
           />
@@ -31,7 +36,7 @@ export default function App() {
             component={MealsOverview}
             options={{
               title: "Categories",
-              headerStyle: { backgroundColor: "#3e76ca" },
+              headerStyle: { backgroundColor: colorPalette.primary },
               headerTintColor: "white",
             }}
           />
@@ -49,7 +54,7 @@ export default function App() {
                   />
                 );
               },
-              headerStyle: { backgroundColor: "#3e76ca" },
+              headerStyle: { backgroundColor: colorPalette.primary },
               headerTintColor: "white",
             }}
           />

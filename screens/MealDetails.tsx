@@ -2,6 +2,7 @@ import { ParamListBase } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
 import { IStackScreenTypes } from "../@types/StackScreenTypes";
+import { colorPalette } from "../App";
 import Meal from "../models/meal";
 
 type MealDetailsRouteParams = Meal & { mealId: string };
@@ -56,7 +57,7 @@ const styles = StyleSheet.create({
     marginBottom: 32,
     paddingLeft: 16,
     paddingRight: 16,
-    backgroundColor: "#7fb9d4",
+    backgroundColor: "F2F3F4",
   },
   title: {
     fontSize: 24,
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     marginTop: 3,
     marginBottom: 3,
     borderRadius: 100,
-    backgroundColor: "#ccc",
+    backgroundColor: "#F5B7B1",
   },
   singleDetail: {
     fontSize: 14,
