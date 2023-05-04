@@ -5,6 +5,7 @@ import MealItem from "../components/MealItem";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import { ParamListBase } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
+import React from "react";
 
 type MealsRouteParams = {
   categoryId: string;
@@ -34,7 +35,7 @@ export default function MealsOverview({ route, navigation }: MealsProps) {
       <MealItem
         title={item.title}
         imageUrl={item.imageUrl}
-        {...item}  
+        {...item}
         onPress={() => navigation.navigate("MealDetails", { ...item })}
       />
     );

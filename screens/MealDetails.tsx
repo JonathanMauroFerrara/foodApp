@@ -4,6 +4,7 @@ import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
 import { IStackScreenTypes } from "../@types/StackScreenTypes";
 import { colorPalette } from "../App";
 import Meal from "../models/meal";
+import React from "react";
 
 type MealDetailsRouteParams = Meal & { mealId: string };
 type MealDetailProps = NativeStackScreenProps<ParamListBase, "MealDetails">;
