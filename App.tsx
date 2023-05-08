@@ -6,11 +6,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import MealsOverview from "./screens/MealsOverview";
 import MealDetails from "./screens/MealDetails";
 import React from "react";
-import { createDrawerNavigator } from "@react-navigation/drawer";
 import FavoriteScreen from "./screens/FavoriteScreen";
 import CategoriesScreen from "./screens/CategoriesScreen";
 import { registerRootComponent } from "expo";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import IconButton from "./components/IconButton";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -20,12 +20,29 @@ export const colorPalette = {
   secondary: "#F2F3F4",
 };
 
-function TabNavigator() {
+function StackNavigator() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Categories" component={CategoriesScreen} />
-      <Tab.Screen name="Favorite" component={FavoriteScreen} />
-    </Tab.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name="CategoriesScreen"
+        component={CategoriesScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="Meals"
+        component={MealsOverview}
+        options={{
+          title: "MealsOverview",
+          headerStyle: { backgroundColor: colorPalette.primary },
+          headerTintColor: "white",
+        }}
+      />
+      <Stack.Screen
+        name="MealDetails"
+        //@ts-ignore
+        component={MealDetails}
+      />
+    </Stack.Navigator>
   );
 }
 
@@ -34,36 +51,40 @@ export default function App() {
     <>
       <StatusBar style="light" />
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Tab" component={TabNavigator} />
-          <Stack.Screen
-            name="Meals"
-            component={MealsOverview}
-            // options={{
-            //   title: "Categories",
-            //   headerStyle: { backgroundColor: colorPalette.primary },
-            //   headerTintColor: "white",
-            // }}
+        <Tab.Navigator>
+          <Tab.Screen
+            name="Categories"
+            component={StackNavigator}
+            options={{
+              tabBarIcon: () => {
+                return (
+                  <IconButton
+                    iconType="home"
+                    color="black"
+                    onPress={() => {}}
+                  />
+                );
+              },
+              title: "Home",
+            }}
           />
-          <Stack.Screen
-            name="MealDetails"
-            //@ts-ignore
-            component={MealDetails}
-            // options={{
-            //   headerRight: () => {
-            //     return (
-            //       <IconButton
-            //         iconType="star"
-            //         color="#fcf009"
-            //         onPress={() => {}}
-            //       />
-            //     );
-            //   },
-            //   headerStyle: { backgroundColor: colorPalette.primary },
-            //   headerTintColor: "white",
-            // }}
+          <Tab.Screen
+            name="Favorite"
+            component={FavoriteScreen}
+            options={{
+              tabBarIcon: () => {
+                return (
+                  <IconButton
+                    iconType="star"
+                    color="black"
+                    onPress={() => {}}
+                  />
+                );
+              },
+              title: "Favorite",
+            }}
           />
-        </Stack.Navigator>
+        </Tab.Navigator>
       </NavigationContainer>
     </>
   );
