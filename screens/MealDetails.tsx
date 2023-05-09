@@ -36,7 +36,7 @@ function MealDetails({ route, navigation }: MealDetailProps) {
     navigation.setOptions({
       headerRight: () => (
         <IconButton
-          color={isThisMealFavorite && "#ecd800"}
+          color={isThisMealFavorite ? "#ecd800" : "white"}
           onPress={() => headerButtonPressHandler()}
           iconType={isThisMealFavorite ? "star" : "star-outline"}
         />

@@ -18,6 +18,7 @@ const Tab = createBottomTabNavigator();
 
 export const colorPalette = {
   primary: "#E74C3C",
+  primary900: "#000000",
   secondary: "#F2F3F4",
 };
 
@@ -42,6 +43,11 @@ function StackNavigator() {
         name="MealDetails"
         //@ts-ignore
         component={MealDetails}
+        options={{
+          title: "Meals Detail",
+          headerStyle: { backgroundColor: colorPalette.primary },
+          headerTintColor: "white",
+        }}
       />
     </Stack.Navigator>
   );
@@ -53,7 +59,13 @@ export default function App() {
       <StatusBar style="light" />
       <FavoriteContextProvider>
         <NavigationContainer>
-          <Tab.Navigator>
+          <Tab.Navigator
+            screenOptions={{
+              title: "Food App",
+              headerStyle: { backgroundColor: colorPalette.primary900 },
+              headerTintColor: "white",
+            }}
+          >
             <Tab.Screen
               name="Categories"
               component={StackNavigator}

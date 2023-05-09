@@ -6,6 +6,7 @@ import { MEALS, CATEGORIES } from "../data/dummy-data";
 import { ParamListBase } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
+import MealList from "../components/MealList";
 
 type MealsRouteParams = {
   categoryId: string;
@@ -29,28 +30,7 @@ export default function MealsOverview({ route, navigation }: MealsProps) {
     navigation.setOptions({ title: categoryTitle });
   }, [categoryId, navigation]);
 
-  //Funzione per rendirizzare
-  function _renderMealItem({ item }: any) {
-    return (
-      <MealItem
-        title={item.title}
-        imageUrl={item.imageUrl}
-        {...item}
-        onPress={() => navigation.navigate("MealDetails", { ...item })}
-      />
-    );
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={_renderMealItem}
-        style={{ width: "100%", padding: 10, paddingTop: 100 }}
-      />
-    </View>
-  );
+  return <MealList meals={displayedMeals} />;
 }
 
 const styles = StyleSheet.create({
