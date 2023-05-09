@@ -11,6 +11,7 @@ import CategoriesScreen from "./screens/CategoriesScreen";
 import { registerRootComponent } from "expo";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import IconButton from "./components/IconButton";
+import FavoriteContextProvider from "./store/context/favorite-context";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -50,42 +51,44 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Tab.Navigator>
-          <Tab.Screen
-            name="Categories"
-            component={StackNavigator}
-            options={{
-              tabBarIcon: () => {
-                return (
-                  <IconButton
-                    iconType="home"
-                    color="black"
-                    onPress={() => {}}
-                  />
-                );
-              },
-              title: "Home",
-            }}
-          />
-          <Tab.Screen
-            name="Favorite"
-            component={FavoriteScreen}
-            options={{
-              tabBarIcon: () => {
-                return (
-                  <IconButton
-                    iconType="star"
-                    color="black"
-                    onPress={() => {}}
-                  />
-                );
-              },
-              title: "Favorite",
-            }}
-          />
-        </Tab.Navigator>
-      </NavigationContainer>
+      <FavoriteContextProvider>
+        <NavigationContainer>
+          <Tab.Navigator>
+            <Tab.Screen
+              name="Categories"
+              component={StackNavigator}
+              options={{
+                tabBarIcon: () => {
+                  return (
+                    <IconButton
+                      iconType="home"
+                      color="black"
+                      onPress={() => {}}
+                    />
+                  );
+                },
+                title: "Home",
+              }}
+            />
+            <Tab.Screen
+              name="Favorite"
+              component={FavoriteScreen}
+              options={{
+                tabBarIcon: () => {
+                  return (
+                    <IconButton
+                      iconType="star"
+                      color="black"
+                      onPress={() => {}}
+                    />
+                  );
+                },
+                title: "Favorite",
+              }}
+            />
+          </Tab.Navigator>
+        </NavigationContainer>
+      </FavoriteContextProvider>
     </>
   );
 }

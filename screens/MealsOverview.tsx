@@ -1,6 +1,6 @@
 import { useLayoutEffect } from "react";
 import { FlatList, StyleSheet, Text, View } from "react-native";
-import { IStackScreenTypes } from "../@types/StackScreenTypes";
+
 import MealItem from "../components/MealItem";
 import { MEALS, CATEGORIES } from "../data/dummy-data";
 import { ParamListBase } from "@react-navigation/native";
@@ -47,7 +47,7 @@ export default function MealsOverview({ route, navigation }: MealsProps) {
         data={displayedMeals}
         keyExtractor={(item) => item.id}
         renderItem={_renderMealItem}
-        style={{ width: "100%", padding: 10 }}
+        style={{ width: "100%", padding: 10, paddingTop: 100 }}
       />
     </View>
   );

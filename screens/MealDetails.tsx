@@ -1,17 +1,17 @@
 import { ParamListBase } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { Text, View, Image, StyleSheet, ScrollView } from "react-native";
-import { IStackScreenTypes } from "../@types/StackScreenTypes";
-import { colorPalette } from "../App";
 import Meal from "../models/meal";
-import React from "react";
+import React, { useContext, useLayoutEffect } from "react";
+import { FavoritesContext } from "../store/context/favorite-context";
+import IconButton from "../components/IconButton";
 
-type MealDetailsRouteParams = Meal & { mealId: string };
+type MealDetailsRouteParams = Meal & { id: string };
 type MealDetailProps = NativeStackScreenProps<ParamListBase, "MealDetails">;
 
 function MealDetails({ route, navigation }: MealDetailProps) {
   const {
-    mealId,
+    id,
     title,
     imageUrl,
     ingredients,
@@ -20,7 +20,30 @@ function MealDetails({ route, navigation }: MealDetailProps) {
     steps,
     affordability,
   } = route.params as MealDetailsRouteParams;
-  console.log(imageUrl);
+
+  const favoriteMealsCtx = useContext(FavoritesContext);
+
+  const isThisMealFavorite = favoriteMealsCtx.ids.includes(id);
+  function headerButtonPressHandler() {
+    if (isThisMealFavorite) {
+      favoriteMealsCtx.removeFavorite(id);
+    } else {
+      favoriteMealsCtx.addFavorite(id);
+    }
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <IconButton
+          color={isThisMealFavorite && "#ecd800"}
+          onPress={() => headerButtonPressHandler()}
+          iconType={isThisMealFavorite ? "star" : "star-outline"}
+        />
+      ),
+    });
+  }, [navigation, isThisMealFavorite]);
+
   return (
     <ScrollView style={styles.container}>
       <Text style={styles.title}>{title}</Text>
