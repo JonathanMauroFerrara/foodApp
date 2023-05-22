@@ -12,6 +12,8 @@ import { registerRootComponent } from "expo";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import IconButton from "./components/IconButton";
 import FavoriteContextProvider from "./store/context/favorite-context";
+import { Provider } from "react-redux";
+import { store } from "./store/redux/store";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -57,50 +59,52 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <FavoriteContextProvider>
-        <NavigationContainer>
-          <Tab.Navigator
-            screenOptions={{
-              title: "Food App",
-              headerStyle: { backgroundColor: colorPalette.primary900 },
-              headerTintColor: "white",
-            }}
-          >
-            <Tab.Screen
-              name="Categories"
-              component={StackNavigator}
-              options={{
-                tabBarIcon: () => {
-                  return (
-                    <IconButton
-                      iconType="home"
-                      color="black"
-                      onPress={() => {}}
-                    />
-                  );
-                },
-                title: "Home",
+      <Provider store={store}>
+        <FavoriteContextProvider>
+          <NavigationContainer>
+            <Tab.Navigator
+              screenOptions={{
+                title: "Food App",
+                headerStyle: { backgroundColor: colorPalette.primary900 },
+                headerTintColor: "white",
               }}
-            />
-            <Tab.Screen
-              name="Favorite"
-              component={FavoriteScreen}
-              options={{
-                tabBarIcon: () => {
-                  return (
-                    <IconButton
-                      iconType="star"
-                      color="black"
-                      onPress={() => {}}
-                    />
-                  );
-                },
-                title: "Favorite",
-              }}
-            />
-          </Tab.Navigator>
-        </NavigationContainer>
-      </FavoriteContextProvider>
+            >
+              <Tab.Screen
+                name="Categories"
+                component={StackNavigator}
+                options={{
+                  tabBarIcon: () => {
+                    return (
+                      <IconButton
+                        iconType="home"
+                        color="black"
+                        onPress={() => {}}
+                      />
+                    );
+                  },
+                  title: "Home",
+                }}
+              />
+              <Tab.Screen
+                name="Favorite"
+                component={FavoriteScreen}
+                options={{
+                  tabBarIcon: () => {
+                    return (
+                      <IconButton
+                        iconType="star"
+                        color="black"
+                        onPress={() => {}}
+                      />
+                    );
+                  },
+                  title: "Favorite",
+                }}
+              />
+            </Tab.Navigator>
+          </NavigationContainer>
+        </FavoriteContextProvider>
+      </Provider>
     </>
   );
 }
